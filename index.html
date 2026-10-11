@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SyncDoc — Collaborative Document Engine</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside class="sidebar">
+  <a class="logo" href="#"><span class="logo-mark">S</span><span>sync<span class="logo-light">Doc</span><small>COLLABORATIVE ENGINE</small></span></a>
+  <div class="side-heading">WORKSPACE <button id="newDoc" title="Create document">＋</button></div>
+  <div id="docList" class="doc-list"></div>
+  <div class="sidebar-bottom"><div class="online-dot"></div><div><strong>Workspace ready</strong><small>Local demo environment</small></div></div>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <div class="breadcrumbs"><span>Workspace</span><b>/</b><strong id="crumbTitle">Welcome to SyncDoc</strong></div>
+    <div class="top-actions"><span class="connection"><i></i><span id="connectionText">Connecting</span></span><button class="ghost-btn" id="previewToggle">◫ Preview</button><button class="save-btn" id="saveBtn">↗ Save document</button></div>
+  </header>
+  <section class="hero">
+    <div><div class="tag"><span>✦</span> REAL-TIME COLLABORATION</div><h1 id="pageTitle">Welcome to SyncDoc</h1><p>Write together. Resolve conflicts. Keep every idea in sync.</p></div>
+    <div class="version-card"><small>DOCUMENT VERSION</small><strong id="version">v1</strong><span id="updatedAt">Ready to edit</span></div>
+  </section>
+  <section class="editor-layout">
+    <div class="editor-card">
+      <div class="editor-toolbar"><div class="toolbar-left"><span class="file-icon">▤</span><strong>document.md</strong><span class="markdown-pill">MARKDOWN</span></div><div class="toolbar-right"><span class="live-dot"></span><span id="saveStatus">All changes local</span></div></div>
+      <div class="editor-wrap"><div class="line-numbers" id="lineNumbers">1</div><textarea id="editor" spellcheck="false" aria-label="Markdown document editor" placeholder="Start writing your document..."></textarea><div id="preview" class="preview hidden"></div></div>
+      <div class="editor-footer"><span>Markdown supported <b>·</b> Autosave with Save button</span><span id="wordCount">0 words</span></div>
+    </div>
+    <aside class="info-column">
+      <div class="info-card"><div class="card-title"><span class="mini-icon violet">⌘</span><strong>Live collaboration</strong></div><p>Changes saved by another open session are broadcast through Socket.IO.</p><div class="presence-row"><div class="presence-avatars"><span>Y</span><span>+</span></div><span id="presenceText">1 editor in this room</span></div></div>
+      <div class="info-card"><div class="card-title"><span class="mini-icon green">↔</span><strong>Conflict awareness</strong></div><p>Use Conflict Lab below to compare two edits against a shared base and review overlapping block changes.</p><button class="text-link" id="jumpConflict">Open Conflict Lab ↗</button></div>
+      <div class="info-card tip-card"><div class="card-title"><span class="mini-icon amber">✧</span><strong>Quick tip</strong></div><p>Use headings and short paragraphs to make block-based conflict comparison easier to understand.</p></div>
+    </aside>
+  </section>
+  <section class="conflict-section" id="conflictLab">
+    <div class="section-head"><div><div class="tag"><span>✦</span> AST-INSPIRED MERGE DEMO</div><h2>Conflict Lab</h2><p>Compare two edits against the same base document. Review conflicts before applying a result.</p></div><span class="prototype-badge">PROTOTYPE</span></div>
+    <div class="merge-grid">
+      <label class="merge-input"><span><b>Base version</b><small>SHARED ORIGINAL</small></span><textarea id="baseText"># Project Notes
+
+## Goals
+Build a clear document editor.
+
+## Next steps
+- Design the interface
+- Test collaboration</textarea></label>
+      <label class="merge-input"><span><b>Version A</b><small>EDITOR A</small></span><textarea id="versionA"># Project Notes
+
+## Goals
+Build a clear collaborative editor.
+
+## Next steps
+- Design the interface
+- Test collaboration</textarea></label>
+      <label class="merge-input"><span><b>Version B</b><small>EDITOR B</small></span><textarea id="versionB"># Project Notes
+
+## Goals
+Build a clear document editor.
+
+## Next steps
+- Design the interface
+- Add conflict review</textarea></label>
+    </div>
+    <div class="merge-actions"><span>Changes are compared by Markdown block (heading, paragraph, list item or blank line).</span><button id="resolveBtn" class="save-btn">⚡ Resolve changes</button></div>
+    <div id="mergeResult" class="merge-result hidden"><div class="result-title"><strong>Merge result</strong><span id="conflictCount">0 conflicts</span></div><pre id="mergeOutput"></pre><button id="applyMerge" class="ghost-btn">Apply result to editor</button></div>
+  </section>
+  <footer><span><b>syncDoc</b> · Collaborative Document Engine</span><span>Built for an academic web development demo</span></footer>
+  <div id="toast" class="toast" role="status"></div>
+</main>
+<script src="/socket.io/socket.io.js"></script><script src="app.js"></script>
+</body></html>

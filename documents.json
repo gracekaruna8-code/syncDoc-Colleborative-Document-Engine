@@ -1,0 +1,9 @@
+[
+  {
+    "id": "welcome",
+    "title": "Welcome to SyncDoc",
+    "content": "# Welcome to SyncDoc\n\nThis is a collaborative document workspace.\n\n## Try it out\n- Edit the document in the editor.\n- Open this page in another browser tab to see live updates.\n- Use **Preview** to view rendered Markdown.\n\n> Demo note: conflict handling is a lightweight, line-based AST-inspired merge, not a full language parser.",
+    "updatedAt": "2026-10-11T00:00:00.000Z",
+    "version": 1
+  }
+]
